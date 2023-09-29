@@ -33,7 +33,7 @@ Before you begin, make sure you have the following prerequisites:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/bangladesh-railway-e-ticket.git
+   [git clone https://github.com/SohanHaque/bangladesh-railway-e-ticket.git](https://github.com/SohanHaque/Bangladesh_Railway_Dummy.git)
 
    Default Location: C:\xampp\htdocs
 
