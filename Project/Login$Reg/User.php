@@ -1,0 +1,299 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST")
+{
+    $name = $_POST['name'];
+	$from_des = $_POST['from_des'];
+	$to_des = $_POST['to_des'];
+	$date = $_POST['date'];
+    $train_class = $_POST['train_class'];
+    
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "railsheba";
+    
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+    
+    $sql = "INSERT INTO user(name, from_des, to_des, date, train_class) VALUES ('$name','$from_des', '$to_des', '$date', '$train_class')";
+    
+    if ($conn->query($sql) === TRUE) {
+        header("Location: congrats.php");
+        exit;
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+    $conn->close();
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User</title>
+
+    <script>
+        function validateForm() {
+            var name = document.getElementById("name").value;
+            var fromDes = document.getElementById("from_des").value;
+            var toDes = document.getElementById("to_des").value;
+            var date = document.getElementById("date").value;
+            
+            if (name === "") {
+                alert("Please enter your name.");
+                return false;
+            }
+            if (fromDes === "") {
+                alert("Please enter departure station.");
+                return false;
+            }
+            if (toDes === "") {
+                alert("Please enter destination station.");
+                return false;
+            }
+            if (date === "") {
+                alert("Please select a date.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+    
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    
+        button {
+            background-color: rgb(0, 104, 71);
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    
+        button:hover {
+            background-color: rgb(7, 157, 73);
+        }
+
+        .header {
+            background-color: #d3955d;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .corner-button2 {
+            position: fixed;
+            top: 210px;
+            right: 20px;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+        }
+
+        .corner-button3 {
+            position: fixed;
+            top: 290px;
+            right: 20px;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+        }
+
+        .corner-button4 {
+            position: fixed;
+            top: 370px;
+            right: 20px;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+        }
+
+        .corner-button5 {
+            position: fixed;
+            top: 450px;
+            right: 20px;
+            width: 80px;
+            height: 70px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+        }
+        .logo_box {
+    background-color: #F6F9FF;
+    padding: 40px;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 6vh;
+}
+
+.logo_img {
+    margin-left: 300px;
+    margin-top: -33px;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+.logo_text {
+    transform: translateX(4in);
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: -3em;
+    margin-block-end: 12.83em;
+    margin-inline-start: 12px;
+    margin-inline-end: -1px;
+    font-weight: bold;
+}
+
+
+/*nav ul {
+    float: right;
+    margin-top: -98px;
+    margin-right: 325px;
+}*/
+
+nav li {
+    display: inline-block;
+    list-style: none;
+    font-size: 18px;
+    padding: 0px 20px;
+    color: black;
+    text-decoration: none;
+}
+
+
+/*nav li a {
+    color: black;
+    font-size: 18px;
+    padding: 0px 20px;
+}*/
+
+.ul_li {
+    float: right;
+    display: inline-block;
+    margin-top: -98px;
+    margin-right: 325px;
+    font-size: 18px;
+    padding: 0px 20px;
+    text-decoration: none;
+}
+    </style>
+</head>
+<body>
+<div>
+    <header>
+    <div class="logo_box">
+    <div>
+        <td><img src="bdRailwayLogo.png" height="80px" alt="Bangladesh Railway" class="logo_img"></td>
+        <td><h2 style="color: #DA924E" class="logo_text">Bangladesh<br>Railway</h2></td>
+    </div>
+    </div>
+    <nav>
+    <div class="ul_li">  
+    <ul>
+    <li><a href="http://localhost/Project/homepage/homepage.php">Home</a></li>
+  <li><a href="http://localhost/Project/Login$Reg/Loginpage.php">Login</a></li>
+  <li><a href="http://localhost/Project/Login$Reg/Registrationpage.php">Register</a></li>
+  <li><a href="http://localhost/Project/Login$Reg/Traininformation.php">Train Information </a></li>
+  <li><a href="http://localhost/Project/Admin/admin.php">Admin </a></li>
+  <li><a href="http://localhost/Project/Login$Reg/Contactus.php">Contact Us </a></li>
+</ul>
+    </div>
+    </nav> 
+</header>
+</div>
+    <div class="header">
+        <h1>User (Buy Ticket)</h1>
+    </div>
+
+    <div class="container">
+        <h1>Train Ticket Purchase</h1>
+        <form method="post" action="" onsubmit="return validateForm();">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required><br><br>
+          
+            <label for="from_des">From:</label>
+            <input type="text" id="from_des" name="from_des" placeholder="Departure station" required><br><br>
+          
+            <label for="to_des">To:</label>
+            <input type="text" id="to_des" name="to_des" placeholder="Destination station" required><br><br>
+          
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" placeholder="Select date" required><br><br>
+          
+            <label for="train_class">Class:</label>
+            <select id="train_class" name="train_class" required>
+                <option value="economy">Economy</option>
+                <option value="business">Business</option>
+                <option value="first">First Class</option>
+            </select>
+            <button type="submit">Buy Ticket</button>
+        </form>
+    </div>
+    <footer style="background: #F6F9FF;padding: 0px 50px;height: 119px;width: 100%;overflow: hidden;margin-top: 250px;">
+<div>
+    <div>
+        <div>
+            <img src="bdRailwayLogo.png" style="height: 10vh;padding-left: 310px; margin-top: 15px;">
+        </div>
+        <div>
+            <p style="font-weight: bold;font-size: 24px;line-height: 0px;text-align: ;color: #DA924E;padding-left: 405px;margin-top: -60px; padding-top: 0px;">Bangladesh Railway</p>
+            <p style="font-size: 13px;line-height: 15px;text-align: center;color: #006747;font-weight: 400;padding-top: 8px;padding-right: 9in;">নিরাপদ . আরামদায়ক . সাশ্রয়ী</p>
+        </div>
+    </div>
+    <div style="padding-left: 9in;margin-top: -60px;">
+        <a href="http://localhost/Project/homepage/Terms.php" style="font-style: normal;font-weight: 700;font-size: 13px;line-height: 23px;text-align: center;color: #006747;text-decoration: none; font-size:17px;">Terms and Condition |</a>
+        <a href="http://localhost/Project/homepage/privacy.php" style="font-style: normal;font-weight: 700;font-size: 13px;line-height: 23px;text-align: center;color: #006747;text-decoration: none;font-size:17px;">Privacy Policy</a>
+    </div>
+    <div>
+        <p style="font-style: normal;font-weight: 700;font-size: 13px;line-height: 23px;text-align: center;color: #006747;margin-top: -45px; padding-left: 10in; font-size:20px;">POWER BY FAYZUR RAHMAN</p>
+        <div style="font-style: normal;font-weight: 700;font-size: 13px;line-height: 23px;text-align: center;color: #006747;padding-top: 15px;margin-top: 8px; padding-left: 10in;font-size:20px;">
+            20-43330-1
+        </div >
+
+    </div>
+
+</div>
+</footer>
+</body>
+</html>
