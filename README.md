@@ -1,6 +1,6 @@
 # Bangladesh Railway E-Ticket Service
 
-Welcome to the Bangladesh Railway E-Ticket Service project! This web application is designed to streamline the process of booking railway tickets in Bangladesh. Whether you're a developer, a user, or someone looking to contribute, you've come to the right place.
+Welcome to the Bangladesh Railway E-Ticket Service project! This web application is designed to streamline the process of booking railway tickets in Bangladesh. Whether you're a developer, a user, or someone looking to contribute, you've come to the right place. 
 
 ## Table of Contents
 
